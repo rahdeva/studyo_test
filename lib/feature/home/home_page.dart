@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:studyo_test/feature/home/home_controller.dart';
-import '/utills/widget/button/primary_button.dart';
-import '/resources/resources.dart';
+import 'package:studyo_test/resources/resources.dart';
+import 'package:studyo_test/routes/page_names.dart';
+import 'package:studyo_test/utills/widget/button/primary_button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -13,38 +15,65 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         body: GetBuilder<HomeController>(
           builder: (controller) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 40),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Text(
-                      "Selamat Datang",
-                      style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                        fontSize: 32,
-                        color: AppColors.black,
-                        fontWeight: FontWeight.w700
+            return Stack(
+              children: [
+                Container(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        AppColors.blueGradient,
+                        AppColors.purpleGradient,
+                      ],
+                    )
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.all(24),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Studyo.io Test',
+                        style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                          fontSize: 36,
+                          color: Colors.black,
+                        ),
                       ),
-                      textAlign: TextAlign.center,
-                    ),
+                      const SizedBox(height: 50),
+                      Text(
+                        'User : ${controller.userName}',
+                        style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                          color: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      PrimaryButtonWidget(
+                        buttonText: "New Account",
+                        customColors: AppColors.red, 
+                        onPressed: (){
+                          controller.newAccount();
+                        }
+                      ),
+                      const SizedBox(height: 24),
+                      PrimaryButtonWidget(
+                        buttonText: "Profile", 
+                        onPressed: (){
+                          Get.toNamed(PageName.PROFILE);
+                        }
+                      ),
+                      const SizedBox(height: 24),
+                      PrimaryButtonWidget(
+                        buttonText: "Flutter Android Native", 
+                        onPressed: (){
+                          Get.toNamed(PageName.FLUTTER_ANDROID_NATIVE);
+                        }
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 50),
-                  PrimaryButtonWidget(
-                    buttonText: "Masuk ke Aplikasi",
-                    borderRadius: 50,
-                    customColors: Colors.black,
-                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      color: AppColors.white,
-                      fontWeight: FontWeight.w500
-                    ),
-                    margin: const EdgeInsets.symmetric(horizontal: 24),
-                    onPressed: () async {
-                    },
-                  ),
-                ],
-              ),
+                ),
+              ],
             );
           },
         ),
@@ -52,4 +81,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-

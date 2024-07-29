@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return Sizer(builder: (context, orientation, deviceType) {
       return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: PageName.SPLASH,
+        initialRoute: PageName.HOME,
         getPages: PageRoutes.pages,
         theme: AppTheme.buildThemeData(false, context),
         builder: (BuildContext context, child) {

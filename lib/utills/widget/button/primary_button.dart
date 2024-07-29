@@ -8,58 +8,46 @@ class PrimaryButtonWidget extends StatelessWidget {
     required this.buttonText, 
     required this.onPressed, 
     this.width, 
-    this.borderRadius, 
-    this.margin, 
-    this.padding, 
     this.customColors, 
     this.height,
-    this.style,
-    this.smallText = false,
   });
 
   final String buttonText;
   final double? width;
   final double? height;
   final Color? customColors;
-  final double? borderRadius;
-  final double? padding;
-  final bool smallText;
-  final TextStyle? style;
-  final EdgeInsetsGeometry? margin;
   final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width ?? 100.w,
       height: height,
-      margin: margin ?? const EdgeInsets.symmetric(horizontal: 16),
       child: ElevatedButton(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(
-            customColors ?? AppColors.blue,
+            customColors ?? AppColors.green,
           ),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius ?? 10),
+              borderRadius: BorderRadius.circular(30),
+              side: const BorderSide(
+                color: AppColors.black,
+                width: 2
+              )
             )
           )
         ),
         onPressed: onPressed, 
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: padding ?? 12),
+          padding: const EdgeInsets.symmetric(vertical: 16),
           child: Text(
             buttonText,
             textAlign: TextAlign.center,
-            style: smallText
-            ? Theme.of(context).textTheme.bodyMedium!.copyWith(
-                color: AppColors.white,
-                fontWeight: FontWeight.w600
-              )
-            : style ?? Theme.of(context).textTheme.bodyLarge!.copyWith(
-                color: AppColors.white,
-                fontWeight: FontWeight.w600
-              )
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
+              color: AppColors.black,
+              fontWeight: FontWeight.w500
+            )
           ),
         )
       ),

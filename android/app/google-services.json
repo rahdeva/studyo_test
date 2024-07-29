@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "936161116204",
+    "project_id": "studyo-test",
+    "storage_bucket": "studyo-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936161116204:android:adc9323f4ba4645cef1189",
+        "android_client_info": {
+          "package_name": "com.rahdeva.studyo_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZqw1UBb2ram-nM1Ip_F40aIDBc7-6Vio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -82,7 +82,7 @@ class AppTheme {
       ),
       inputDecorationTheme: inputDecoration(darkMode, context), 
       colorScheme: ThemeData().colorScheme.copyWith(
-        primary: AppColors.blue,
+        primary: AppColors.black,
       ).copyWith(
         background: (darkMode) ? AppColors.black : AppColors.white
       ),
@@ -131,58 +131,59 @@ class AppTheme {
   static inputDecoration(bool darkMode, context) {
     return InputDecorationTheme(
       filled: true,
-      fillColor: Colors.grey[50],
+      fillColor: AppColors.grey,
       contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-      suffixIconColor: AppColors.blue,
-      prefixIconColor: AppColors.blue,
+      suffixIconColor: AppColors.black,
+      prefixIconColor: AppColors.black,
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(8),
         borderSide: const BorderSide(
-          color: AppColors.blue, 
+          color: AppColors.black, 
           width: 1
         ),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(8),
         borderSide: const BorderSide(
-          color: AppColors.blue, 
+          color: AppColors.black, 
           width: 1
         )
       ),
       disabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(8),
         borderSide: const BorderSide(
-          color: AppColors.blue, 
+          color: AppColors.black, 
           width: 1
         )
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(
           color: AppColors.red.withOpacity(0.8), 
           width: 1
         ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(8),
         borderSide: const BorderSide(
-          color: AppColors.blue, 
+          color: AppColors.black, 
           width: 2
         )
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(8),
         borderSide: const BorderSide(
           color: AppColors.red, 
           width: 1.5
         ),
       ),
       labelStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
-        color: AppColors.blue,
-        fontWeight: FontWeight.w600
+        color: AppColors.black,
+        fontWeight: FontWeight.w600,
+        backgroundColor: AppColors.grey,
       ),
       hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
-        color: AppColors.gray500
+        color: AppColors.grey
       ),
       errorStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
         color: AppColors.red

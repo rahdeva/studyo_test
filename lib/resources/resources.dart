@@ -3,28 +3,13 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const white = Color(0xFFFFFFFF);
   static const black = Color(0xFF000000);
-  static const red = Color(0xFFEF4073);
-  static const yellow = Color(0xFFEBB707);
-  static const green = Color(0xFF59B100);
-  static const purple = Color(0xFF9758FA);
-  static const grey = Color(0xFF9F9F9F);
-  
+  static const red = Color(0xFFEE2D35);
+  static const yellow = Color(0xFFF5B400);
+  static const darkYellow = Color(0xFFC89100);
+  static const green = Color(0xFF32FFC8);
+  static const purple = Color(0xFFA58CFF);
+  static const grey = Color(0xFFDCF5FA);
   static const blue = Color(0xFF007AFF);
-  static const iconText = Color(0xFF354052);
-  static const iconBG = Color(0xFFECF6FD);
-  static const purple500 = Color(0xFF805AD5);
-  static const blue500 = Color(0xFF3182CE);
-  static const yellow500 = Color(0xFFD69E2E);
-  static const red500 = Color(0xFFE53E3E);
-  static const red50 = Color(0xFFFFF5F5);
-  static const green500 = Color(0xFF38A169);
-  static const gray100 = Color(0xFFEDF2F7);
-  static const gray200 = Color(0xFFE2E8F0);
-  static const gray300 = Color(0xFFCBD5E0);
-  static const gray500 = Color(0xFF718096);
-  static const purpleGradient = Color(0xFF9747FF);
-  static const blueGradient = Color(0xFF007AFF);
-  static const yellowGradient = Color(0xFFF4CE14);
-  static const redGradient = Color(0xFFFF4B91);
-  static const greenGradient = Color(0xFF01DBC2);
+  static const blueGradient = Color(0xFFB9FAFF);
+  static const purpleGradient = Color(0xFFCDA5FF);
 }
