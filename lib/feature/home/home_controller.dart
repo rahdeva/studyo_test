@@ -6,24 +6,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 class HomeController extends GetxController {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final Rx<User?> currentUser = Rx<User?>(null);
+  User? userData;
   String userName = "";
 
   @override
-  void onInit(){
+  void onInit() async {
     super.onInit();
     currentUser.bindStream(auth.authStateChanges());
-    ever(currentUser, initialSignInCheck);
-  }
-
-  void initialSignInCheck(User? user) {
-    if (user == null) {
-      signInAnonymously();
+    if(currentUser.value == null){
+      await signInAnonymously();
     } else {
-      debugPrint('User already signed in: ${user.uid}');
-      currentUser.value = user;
-      if(currentUser.value != null){
-        checkUserInFirestore(currentUser.value!);
-      }
+      debugPrint('User already signed in: ${currentUser.value?.uid}');
+      userData = currentUser.value;
+      checkUserInFirestore(userData!);
     }
   }
 
@@ -32,13 +27,15 @@ class HomeController extends GetxController {
       UserCredential userCredential = await auth.signInAnonymously();
       User? user = userCredential.user;
       if (user != null) {
-        currentUser.value = user;
+        userData = user;
+        userName = "Guest";
         debugPrint('Signed in anonymously as user: ${user.uid}');
-        await checkUserInFirestore(user);
+        checkUserInFirestore(userData!);
       }
     } catch (e) {
       debugPrint('Failed to sign in anonymously: $e');
     }
+    update();
   }
 
   Future<void> checkUserInFirestore(User user) async {
@@ -62,22 +59,12 @@ class HomeController extends GetxController {
 
   void newAccount() async {
     try {
-      logout();
       await auth.signOut();
-      currentUser.value = null;
+      userData = null;
+      userName = "";
       signInAnonymously();
     } catch (e) {
       debugPrint('Failed to create new account in Firestore: $e');
-    }
-  }
-
-  Future<void> logout() async {
-    try {
-      
-      userName = "";
-      debugPrint('User signed out successfully');
-    } catch (e) {
-      debugPrint('Failed to sign out: $e');
     }
   }
 }

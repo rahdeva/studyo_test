@@ -37,30 +37,51 @@ class ProfilePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const BackButtonWidget(),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: AppColors.yellow,
-                              border: Border.all(color: AppColors.black, width: 2),
-                              borderRadius: BorderRadius.circular(30)
-                            ),
-                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                            child: Row(
-                              children: [
-                                Text(
-                                  'Incomplete Profile',
-                                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                                    color: Colors.black,
-                                  ),
+                          Obx(
+                            () => Container(
+                                decoration: BoxDecoration(
+                                  color: controller.isCompleted.value
+                                  ? AppColors.blue
+                                  : AppColors.yellow,
+                                  border: Border.all(color: AppColors.black, width: 2),
+                                  borderRadius: BorderRadius.circular(30)
                                 ),
-                                const SizedBox(width: 8),
-                                const Icon(
-                                  Icons.error_rounded,
-                                  color: AppColors.darkYellow,
-                                  size: 24,
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                                child: controller.isCompleted.value
+                                ? Row(
+                                    children: [
+                                      Text(
+                                        'Completed Profile',
+                                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      const Icon(
+                                        Icons.check,
+                                        color: AppColors.white,
+                                        size: 24,
+                                      ),
+                                    ],
+                                  )
+                                : Row(
+                                  children: [
+                                    Text(
+                                      'Incomplete Profile',
+                                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    const Icon(
+                                      Icons.error_rounded,
+                                      color: AppColors.darkYellow,
+                                      size: 24,
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                          )
+                              )
+                            )
                         ],
                       ),
                       const SizedBox(height: 40),
@@ -101,8 +122,7 @@ class ProfilePage extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 16),
                                 Obx(
-                                  (){
-                                    return Text(
+                                  () => Text(
                                       '- Use characters and numbers only',
                                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                                         fontWeight: FontWeight.w400,
@@ -112,8 +132,7 @@ class ProfilePage extends StatelessWidget {
                                             ? AppColors.blue 
                                             : AppColors.red
                                       ),
-                                    );
-                                  }
+                                    )
                                 ),
                                 Text(
                                   '- Minimum 8 characters',
@@ -126,26 +145,30 @@ class ProfilePage extends StatelessWidget {
                                         : AppColors.red
                                   ),
                                 ),
-                                Text(
-                                  '- This Username is unavailable',
-                                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                    fontWeight: FontWeight.w400,
-                                    color: controller.isNull.value
-                                      ? AppColors.black
-                                      : controller.isCondition3.value 
-                                        ? AppColors.blue 
-                                        : AppColors.red
+                                Obx(
+                                  () => Text(
+                                    '- This Username is unavailable',
+                                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                      fontWeight: FontWeight.w400,
+                                      color: controller.isNull.value
+                                        ? AppColors.black
+                                        : controller.isCondition3.value 
+                                          ? AppColors.blue 
+                                          : AppColors.red
+                                    ),
                                   ),
                                 ),
-                                Text(
-                                  "- You can't change your username",
-                                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                    fontWeight: FontWeight.w400,
-                                    color: controller.isNull.value
-                                      ? AppColors.black
-                                      : controller.isCondition4.value 
-                                        ? AppColors.blue 
-                                        : AppColors.red
+                                Obx(
+                                  () => Text(
+                                    "- You can't change your username",
+                                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                      fontWeight: FontWeight.w400,
+                                      color: controller.isNull.value
+                                        ? AppColors.black
+                                        : controller.isReview.value 
+                                          ? AppColors.blue 
+                                          : AppColors.red
+                                    ),
                                   ),
                                 ),
                               ],
@@ -156,7 +179,9 @@ class ProfilePage extends StatelessWidget {
                             width: 70.w,
                             child: PrimaryButtonWidget(
                               buttonText: "Confirm", 
-                              onPressed: (){}
+                              onPressed: (){
+                                controller.confirmUsername();
+                              }
                             ),
                           )
                         ],

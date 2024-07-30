@@ -8,17 +8,17 @@ class BackButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.purple,
-        shape: BoxShape.circle,
-        border: Border.all(color: AppColors.black, width: 2)
-      ),
-      padding: const EdgeInsets.all(8),
-      child: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
+    return GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.purple,
+          shape: BoxShape.circle,
+          border: Border.all(color: AppColors.black, width: 2)
+        ),
+        padding: const EdgeInsets.all(8),
         child: const Icon(
           Icons.arrow_back_rounded,
           color: AppColors.black,

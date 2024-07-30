@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:studyo_test/feature/home/home_controller.dart';
 import 'package:studyo_test/resources/resources.dart';
 import 'package:studyo_test/routes/page_names.dart';
@@ -51,7 +50,7 @@ class HomePage extends StatelessWidget {
                       const SizedBox(height: 24),
                       PrimaryButtonWidget(
                         buttonText: "New Account",
-                        customColors: AppColors.red, 
+                        customColors: AppColors.yellow, 
                         onPressed: (){
                           controller.newAccount();
                         }
@@ -60,7 +59,10 @@ class HomePage extends StatelessWidget {
                       PrimaryButtonWidget(
                         buttonText: "Profile", 
                         onPressed: (){
-                          Get.toNamed(PageName.PROFILE);
+                          Get.toNamed(
+                            PageName.PROFILE,
+                            arguments: controller.userData?.uid
+                          );
                         }
                       ),
                       const SizedBox(height: 24),
